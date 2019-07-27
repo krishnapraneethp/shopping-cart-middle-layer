@@ -18,4 +18,5 @@ public class ShoppingCartOutputGenerator<T> {
         shoppingCartOutput.setData(obj);
         return shoppingCartOutput;
     }
+
 }

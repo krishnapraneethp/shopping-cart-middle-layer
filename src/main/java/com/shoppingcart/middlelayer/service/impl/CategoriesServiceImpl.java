@@ -1,7 +1,7 @@
 package com.shoppingcart.middlelayer.service.impl;
 
 import com.shoppingcart.middlelayer.dao.CategoriesDao;
-import com.shoppingcart.middlelayer.dto.Categories;
+import com.shoppingcart.middlelayer.dto.Category;
 import com.shoppingcart.middlelayer.service.CategoriesService;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,12 @@ public class CategoriesServiceImpl implements CategoriesService {
     }
 
     @Override
-    public List<Categories> getAllCategories() {
+    public List<Category> getAllCategories() {
         return categoriesDao.getAllCategories();
+    }
+
+    @Override
+    public Category getParticularCategory(Integer catId) {
+        return categoriesDao.getParticularCategory(catId);
     }
 }

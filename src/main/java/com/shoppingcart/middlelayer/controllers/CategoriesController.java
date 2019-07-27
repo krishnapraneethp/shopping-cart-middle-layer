@@ -1,11 +1,13 @@
 package com.shoppingcart.middlelayer.controllers;
 
+import com.shoppingcart.middlelayer.dto.CategoriesWrapper;
+import com.shoppingcart.middlelayer.dto.Category;
+import com.shoppingcart.middlelayer.service.CategoriesService;
 import com.shoppingcart.middlelayer.utils.ShoppingCartOutput;
 import com.shoppingcart.middlelayer.utils.ShoppingCartOutputGenerator;
-import com.shoppingcart.middlelayer.dto.Categories;
-import com.shoppingcart.middlelayer.service.CategoriesService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -14,19 +16,28 @@ import java.util.List;
 @RequestMapping(value = "shopping-cart-middle-layer")
 public class CategoriesController {
 
-
+    private final CategoriesWrapper categoriesWrapper;
     private final CategoriesService categoriesService;
-    private final ShoppingCartOutputGenerator<List<Categories>> shoppingCartOutputGenerator;
+    private final ShoppingCartOutputGenerator<CategoriesWrapper> shoppingCartOutputGenerator;
 
-    public CategoriesController(CategoriesService categoriesService,
-                                ShoppingCartOutputGenerator<List<Categories>> shoppingCartOutputGenerator1) {
+    public CategoriesController(CategoriesWrapper categoriesWrapper, CategoriesService categoriesService,
+                                ShoppingCartOutputGenerator<CategoriesWrapper> shoppingCartOutputGenerator) {
+        this.categoriesWrapper = categoriesWrapper;
         this.categoriesService = categoriesService;
-        this.shoppingCartOutputGenerator = shoppingCartOutputGenerator1;
+        this.shoppingCartOutputGenerator = shoppingCartOutputGenerator;
     }
 
     @GetMapping(value = "get-all-categories")
-    public ShoppingCartOutput<List<Categories>> getAllCategories() {
-        List<Categories> categories = categoriesService.getAllCategories();
-        return shoppingCartOutputGenerator.generateSuccessResponse(categories);
+    public ShoppingCartOutput<CategoriesWrapper> getAllCategories() {
+        List<Category> categories = categoriesService.getAllCategories();
+        categoriesWrapper.setCategories(categories);
+        return shoppingCartOutputGenerator.generateSuccessResponse(categoriesWrapper);
+    }
+
+    @GetMapping(value = "get-category/{categoryId}")
+    public ShoppingCartOutput<CategoriesWrapper> getOneCategory(@RequestParam Integer categoryId) {
+        Category category = categoriesService.getParticularCategory(categoryId);
+        categoriesWrapper.setCategory(category);
+        return shoppingCartOutputGenerator.generateSuccessResponse(categoriesWrapper);
     }
 }

@@ -1,10 +1,12 @@
 package com.shoppingcart.middlelayer.service;
 
-import com.shoppingcart.middlelayer.dto.Categories;
+import com.shoppingcart.middlelayer.dto.Category;
 
 import java.util.List;
 
 public interface CategoriesService {
 
-    List<Categories> getAllCategories();
+    List<Category> getAllCategories();
+
+    Category getParticularCategory(Integer catId);
 }

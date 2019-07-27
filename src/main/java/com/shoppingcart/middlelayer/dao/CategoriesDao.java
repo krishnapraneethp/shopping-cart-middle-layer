@@ -1,9 +1,11 @@
 package com.shoppingcart.middlelayer.dao;
 
-import com.shoppingcart.middlelayer.dto.Categories;
+import com.shoppingcart.middlelayer.dto.Category;
 
 import java.util.List;
 
 public interface CategoriesDao {
-    List<Categories> getAllCategories();
+    List<Category> getAllCategories();
+
+    Category getParticularCategory(Integer catId);
 }

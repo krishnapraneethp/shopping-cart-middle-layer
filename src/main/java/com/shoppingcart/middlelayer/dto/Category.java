@@ -3,7 +3,7 @@ package com.shoppingcart.middlelayer.dto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Categories {
+public class Category {
 
     private int catId;
     private String catName;
