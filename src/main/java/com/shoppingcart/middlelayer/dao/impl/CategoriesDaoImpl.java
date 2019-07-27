@@ -20,12 +20,13 @@ public class CategoriesDaoImpl implements CategoriesDao {
 
     @Override
     public List<Category> getAllCategories() {
-        return jdbcTemplate.query(GET_ALL_CATEGORIES, new BeanPropertyRowMapper<>(Category.class));
+        return jdbcTemplate.query(GET_ALL_CATEGORIES,
+                new BeanPropertyRowMapper<>(Category.class));
     }
 
     @Override
     public Category getParticularCategory(Integer catId) {
-        return (Category) jdbcTemplate.query(GET_ONE_CATEGORY, new Object[]{catId},
-                new BeanPropertyRowMapper<>(Category.class));
+        return jdbcTemplate.queryForObject(GET_ONE_CATEGORY,
+                new Object[]{catId}, new BeanPropertyRowMapper<>(Category.class));
     }
 }

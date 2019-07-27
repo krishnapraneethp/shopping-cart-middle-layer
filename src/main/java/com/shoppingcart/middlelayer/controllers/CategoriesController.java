@@ -5,10 +5,7 @@ import com.shoppingcart.middlelayer.dto.Category;
 import com.shoppingcart.middlelayer.service.CategoriesService;
 import com.shoppingcart.middlelayer.utils.ShoppingCartOutput;
 import com.shoppingcart.middlelayer.utils.ShoppingCartOutputGenerator;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,7 +32,7 @@ public class CategoriesController {
     }
 
     @GetMapping(value = "get-category/{categoryId}")
-    public ShoppingCartOutput<CategoriesWrapper> getOneCategory(@RequestParam Integer categoryId) {
+    public ShoppingCartOutput<CategoriesWrapper> getOneCategory(@PathVariable Integer categoryId) {
         Category category = categoriesService.getParticularCategory(categoryId);
         categoriesWrapper.setCategory(category);
         return shoppingCartOutputGenerator.generateSuccessResponse(categoriesWrapper);
