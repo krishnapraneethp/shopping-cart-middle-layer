@@ -2,25 +2,34 @@ package com.shoppingcart.middlelayer.dto;
 
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.io.Serializable;
+
 @Component
-public class Category {
+@Entity
+public class Category implements Serializable {
 
-    private int catId;
-    private String catName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Integer id;
+    private String name;
 
-    public int getCatId() {
-        return catId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setCatId(int catId) {
-        this.catId = catId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getCatName() {
-        return catName;
+    public String getName() {
+        return name;
     }
 
-    public void setCatName(String catName) {
-        this.catName = catName;
+    public void setName(String name) {
+        this.name = name;
     }
 }

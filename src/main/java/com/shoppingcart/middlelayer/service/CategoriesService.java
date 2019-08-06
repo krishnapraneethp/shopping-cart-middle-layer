@@ -6,7 +6,11 @@ import java.util.List;
 
 public interface CategoriesService {
 
-    List<Category> getAllCategories();
+    List<Category> getCategories(Integer catId);
 
-    Category getParticularCategory(Integer catId);
+    boolean insertCategory(Category category);
+
+    boolean updateCategory(Category category);
+
+    boolean deleteCategory(Integer id);
 }
