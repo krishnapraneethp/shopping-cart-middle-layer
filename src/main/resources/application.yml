@@ -1,0 +1,10 @@
+server:
+  port: 8081
+keycloak:
+  auth-server-url: http://localhost:8080/auth/
+  realm: dev
+  resource: login-app
+  public-client: true
+  cors: true
+#  adminUname: krishnapraneethpn
+#  adminPwd: Krrish@1991
